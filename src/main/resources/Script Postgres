@@ -1,0 +1,85 @@
+-- public.cdc_categoria definition
+
+-- Drop table
+
+-- DROP TABLE public.cdc_categoria;
+
+CREATE TABLE public.cdc_categoria (
+	id serial NOT NULL,
+	nm_categoria varchar(255) NULL,
+	CONSTRAINT cdc_categoria_pkey PRIMARY KEY (id)
+);
+
+
+-- public.cdc_user_app definition
+
+-- Drop table
+
+-- DROP TABLE public.cdc_user_app;
+
+CREATE TABLE public.cdc_user_app (
+	id serial NOT NULL,
+	"level" int4 NULL,
+	pass varchar(255) NULL,
+	status int4 NULL,
+	"user" varchar(255) NULL,
+	CONSTRAINT cdc_user_app_pkey PRIMARY KEY (id)
+);
+
+
+-- public.cdc_user definition
+
+-- Drop table
+
+-- DROP TABLE public.cdc_user;
+
+CREATE TABLE public.cdc_user (
+	id_user serial NOT NULL,
+	email varchar(255) NULL,
+	last_name varchar(255) NULL,
+	"name" varchar(255) NULL,
+	id_user_app int4 NULL,
+	CONSTRAINT cdc_user_pkey PRIMARY KEY (id_user),
+	CONSTRAINT fk716qd8cm7c8dueroouffowb8c FOREIGN KEY (id_user_app) REFERENCES cdc_user_app(id)
+);
+
+
+-- public.cdc_noticias definition
+
+-- Drop table
+
+-- DROP TABLE public.cdc_noticias;
+
+CREATE TABLE public.cdc_noticias (
+	id serial NOT NULL,
+	descripcion varchar(255) NULL,
+	fecha_creado date NULL DEFAULT CURRENT_DATE,
+	hora_creado time NULL DEFAULT CURRENT_TIME,
+	titulo varchar(255) NULL,
+	id_categoria int4 NULL,
+	id_user int4 NULL,
+	CONSTRAINT cdc_noticias_pkey PRIMARY KEY (id),
+	CONSTRAINT uk_63u492r0xnody4ypsjph9er7l UNIQUE (id_categoria),
+	CONSTRAINT uk_sb7d64f0ppy5wyon5m5shexu5 UNIQUE (id_user),
+	CONSTRAINT fk7j0l7wcaab2mrvn5cyj2e9iks FOREIGN KEY (id_user) REFERENCES cdc_user(id_user),
+	CONSTRAINT fkq1bqins8kgc7c7ldxvea10a92 FOREIGN KEY (id_categoria) REFERENCES cdc_categoria(id)
+);
+
+
+-- public.cdc_comentario definition
+
+-- Drop table
+
+-- DROP TABLE public.cdc_comentario;
+
+CREATE TABLE public.cdc_comentario (
+	id serial NOT NULL,
+	fecha date NULL DEFAULT CURRENT_DATE,
+	hora time NULL DEFAULT CURRENT_TIME,
+	nm_comentario varchar(255) NULL,
+	id_noticia int4 NULL,
+	id_user int4 NULL,
+	CONSTRAINT cdc_comentario_pkey PRIMARY KEY (id),
+	CONSTRAINT fk5k9ifg1tspge8ukjde1kvbwpj FOREIGN KEY (id_noticia) REFERENCES cdc_noticias(id),
+	CONSTRAINT fkijed4cr4fc7rlojasrw2r9w86 FOREIGN KEY (id_user) REFERENCES cdc_user(id_user)
+);
