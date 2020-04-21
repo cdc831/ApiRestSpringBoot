@@ -3,7 +3,7 @@ package ar.com.restfull.blog.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "cdc_categoria")
+@Table(name = "cdc_categoria",schema = "noticiasrestfull")
 public class Categoria {
 
     @Id
