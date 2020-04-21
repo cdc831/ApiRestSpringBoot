@@ -15,7 +15,7 @@ public class Users {
     private String last_name;
     private String email;
 
-    @JoinColumn(name = "id_user_app",unique = true,referencedColumnName = "id")
+    @JoinColumn(name = "id_user_app",referencedColumnName = "id")
     @OneToOne(cascade = CascadeType.ALL)
     private UserApp userApp;
 
