@@ -25,11 +25,11 @@ public class Noticia {
     private Date hora_creado;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_user",unique = true,referencedColumnName = "id_user")
+    @JoinColumn(name = "id_user",referencedColumnName = "id_user")
     Users users;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_categoria",unique = true,referencedColumnName = "id")
+    @JoinColumn(name = "id_categoria",referencedColumnName = "id")
     Categoria categoria;
 
 

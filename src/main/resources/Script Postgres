@@ -59,8 +59,6 @@ CREATE TABLE public.cdc_noticias (
 	id_categoria int4 NULL,
 	id_user int4 NULL,
 	CONSTRAINT cdc_noticias_pkey PRIMARY KEY (id),
-	CONSTRAINT uk_63u492r0xnody4ypsjph9er7l UNIQUE (id_categoria),
-	CONSTRAINT uk_sb7d64f0ppy5wyon5m5shexu5 UNIQUE (id_user),
 	CONSTRAINT fk7j0l7wcaab2mrvn5cyj2e9iks FOREIGN KEY (id_user) REFERENCES cdc_user(id_user),
 	CONSTRAINT fkq1bqins8kgc7c7ldxvea10a92 FOREIGN KEY (id_categoria) REFERENCES cdc_categoria(id)
 );
